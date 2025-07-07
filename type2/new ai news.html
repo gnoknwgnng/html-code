@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zylense.ai | AI-Driven Services</title>
+    <!-- Google Fonts: Poppins for a modern, clean look -->
+    <link href="https://fonts2.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Define CSS Variables for consistent theming based on your image */
+        :root {
+            --light-background: #ffffff; /* Main background color changed to white */
+            --dark-text: #333333; /* General text color changed to dark for contrast */
+            --accent-primary: #00bcd4; /* New primary accent: Cyan from "AI-Driven Solutions" */
+            --accent-secondary: #00838f; /* New secondary accent: Darker Cyan for gradients */
+            --card-background: #f8f8f8; /* Background for cards/sections, very light grey */
+            --border-color: #dddddd; /* Border color for subtle separation */
+            --text-muted: #666666; /* Lighter text for descriptions/dates */
+            --text-dark-muted: #999999; /* Even lighter for less emphasis */
+        }
+
+        /* Base Body Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-background); /* Use the new light background */
+            color: var(--dark-text); /* Use the new dark text color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+
+        /* Main Container for content */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: var(--light-background); /* Consistent with body background */
+            border-radius: 8px; /* Slightly rounded corners */
+            box-sizing: border-box;
+        }
+
+        /* Heading Styles */
+        h1, h2 {
+            text-align: center;
+            color: var(--dark-text); /* Headings are dark */
+            margin-bottom: 30px;
+        }
+
+        /* Section Title Styling (e.g., "Core Capabilities") */
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-top: 60px;
+            margin-bottom: 40px;
+            position: relative;
+            display: flex; /* Use flexbox to center content and lines */
+            align-items: center;
+            justify-content: center;
+            gap: 20px; /* Space between text and lines */
+            color: var(--dark-text); /* Section titles are dark */
+        }
+
+        /* Lines before and after section titles */
+        .section-title::before,
+        .section-title::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); /* Updated gradient */
+            border-radius: 2px; /* Rounded ends for the lines */
+        }
+
+        /* Description below main title */
+        .section-description {
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 50px;
+            color: var(--text-muted); /* Muted text for descriptions */
+            line-height: 1.6;
+        }
+
+        /* Grid for Core Capabilities cards */
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+            gap: 30px; /* Space between cards */
+            margin-top: 50px;
+        }
+
+        /* Styling for individual capability cards */
+        .capability-card {
+            background-color: var(--card-background); /* Light background for cards */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Lighter shadow for light theme */
+            text-align: center;
+            border: 1px solid var(--border-color); /* Subtle border */
+            transition: transform 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
+        }
+
+        .capability-card:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            border-color: var(--accent-primary); /* Highlight border on hover */
+        }
+
+        .capability-card svg {
+            font-size: 3em; /* Icon size */
+            color: var(--accent-primary); /* Icon color (updated) */
+            margin-bottom: 20px;
+        }
+
+        .capability-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: var(--dark-text); /* Card headings are dark */
+        }
+
+        .capability-card p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: var(--text-muted); /* Card text is muted */
+        }
+
+        /* News Section Specific Styles */
+        .news-section {
+            padding: 80px 0;
+            text-align: center;
+            width: 100%; /* Ensure it spans full width */
+            box-sizing: border-box;
+        }
+
+        .news-section h2 {
+            font-size: 2.8em;
+            color: var(--dark-text); /* News section heading is dark */
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block; /* For centering the pseudo-element line */
+        }
+
+        .news-section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); /* Updated gradient */
+            border-radius: 2px;
+        }
+
+        /* Circular News Hub - The "Pie Chart" inspired element */
+        .circular-news-hub {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Allow segments to wrap on smaller screens */
+            gap: 40px; /* Space between the circular segments */
+            margin-bottom: 50px;
+            padding: 0 20px; /* Add some padding to prevent edge overflow */
+        }
+
+        /* Individual News Category Segment */
+        .news-category-segment {
+            width: 200px; /* Fixed width for circular shape */
+            height: 200px; /* Fixed height for circular shape */
+            border-radius: 50%; /* Makes it circular */
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary)); /* Updated gradient fill */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white; /* Text color inside segment remains white for contrast */
+            font-size: 1.2em;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer; /* Indicate interactivity */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Lighter shadow */
+            border: 3px solid transparent; /* Transparent border for hover effect */
+            box-sizing: border-box; /* Include padding/border in size */
+        }
+
+        .news-category-segment:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* More prominent shadow */
+            border-color: var(--dark-text); /* Highlight border on hover with dark text color */
+        }
+
+        .news-category-segment span {
+            padding: 15px; /* Padding for text inside segment */
+            display: block; /* Ensures padding works correctly */
+            line-height: 1.4; /* Improve readability */
+        }
+
+        /* Area where news articles are displayed */
+        .news-display-area {
+            background-color: var(--card-background); /* Light background for news area */
+            padding: 40px;
+            border-radius: 10px;
+            min-height: 300px; /* Ensure it has some height even if empty */
+            text-align: left;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+            margin: 0 auto; /* Center the display area */
+            width: 90%; /* Match container width */
+            max-width: 900px; /* Max width for readability */
+            box-sizing: border-box;
+        }
+
+        /* Styling for individual news articles */
+        .news-article {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color); /* Separator */
+        }
+
+        .news-article:last-child {
+            border-bottom: none; /* No border for the last article */
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .news-article h3 {
+            color: var(--accent-primary); /* Headline color (updated) */
+            font-size: 1.6em;
+            margin-bottom: 8px;
+        }
+
+        .news-article p {
+            color: var(--text-muted); /* Article text is muted */
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .news-article .date {
+            font-size: 0.9em;
+            color: var(--text-dark-muted); /* Muted color for date */
+            margin-bottom: 5px;
+        }
+
+        .news-article a {
+            color: var(--accent-primary); /* Link color (updated) */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .news-article a:hover {
+            color: var(--accent-secondary); /* Highlight link on hover (updated) */
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2em;
+                flex-direction: column; /* Stack text and lines on small screens */
+                gap: 10px;
+            }
+            .section-title::before,
+            .section-title::after {
+                width: 40px; /* Shorter lines */
+                margin: 0 auto; /* Center lines when stacked */
+            }
+            .capabilities-grid {
+                grid-template-columns: 1fr; /* Single column layout */
+            }
+            .capability-card {
+                padding: 25px;
+            }
+            .news-section h2 {
+                font-size: 2em;
+            }
+            .circular-news-hub {
+                flex-direction: column; /* Stack segments vertically */
+                gap: 30px;
+            }
+            .news-category-segment {
+                width: 180px;
+                height: 180px;
+                font-size: 1.1em;
+            }
+            .news-display-area {
+                padding: 30px;
+            }
+            .news-article h3 {
+                font-size: 1.4em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.6em;
+            }
+            .section-title::before,
+            .section-title::after {
+                width: 30px;
+            }
+            .news-section h2 {
+                font-size: 1.8em;
+            }
+            .news-category-segment {
+                width: 160px;
+                height: 160px;
+                font-size: 1em;
+            }
+            .news-display-area {
+                padding: 20px;
+            }
+            .news-article h3 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+    <!-- You can uncomment the Font Awesome link below if you prefer to use Font Awesome icons instead of inline SVGs -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+</head>
+<body>
+
+    <header>
+        <!-- This is a placeholder for your existing website's header/navigation -->
+        <!-- You would typically have your logo and navigation links here -->
+    </header>
+
+    <div class="container">
+        <h2 class="section-title"><span>Foundation of Intelligent Transformation</span></h2>
+        <p class="section-description">Zylense.ai empowers businesses with next-gen AI technologies across domains.</p>
+
+        <h2 class="section-title"><span>Core Capabilities</span></h2>
+        <div class="capabilities-grid">
+            <div class="capability-card">
+                <!-- Inline SVG for Predictive Analytics icon (Feather Icons) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                <h3>Predictive Analytics</h3>
+                <p>Forecast outcomes using real-time & historical data for informed decision-making.</p>
+            </div>
+            <div class="capability-card">
+                <!-- Inline SVG for Audio Intelligence icon (Feather Icons) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                <h3>Audio Intelligence</h3>
+                <p>Advanced noise reduction & sound recognition for clear communication & safety applications.</p>
+            </div>
+            <div class="capability-card">
+                <!-- Inline SVG for Computer Vision + IoT Fusion icon (Feather Icons) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <h3>Computer Vision + IoT Fusion</h3>
+                <p>Seamless integration of visual inspection & real-time sensor data processing for smart environments.</p>
+            </div>
+            <!-- You can add more capability cards here following the same structure -->
+            <div class="capability-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cpu"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><path d="M9 1v3"></path><path d="M15 1v3"></path><path d="M9 20v3"></path><path d="M15 20v3"></path><path d="M20 9h3"></path><path d="M20 15h3"></path><path d="M1 9h3"></path><path d="M1 15h3"></path></svg>
+                <h3>Natural Language Processing</h3>
+                <p>Empowering machines to understand, interpret, and generate human language effectively.</p>
+            </div>
+            <div class="capability-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-branch"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+                <h3>AI-Driven Automation</h3>
+                <p>Streamlining complex workflows and repetitive tasks with intelligent automation solutions.</p>
+            </div>
+            <div class="capability-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-database"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M21 12v3c0 1.66-4 3-9 3s-9-1.34-9-3v-3"></path><path d="M21 19c0 1.66-4 3-9 3s-9-1.34-9-3v-3"></path></svg>
+                <h3>Data Science & ML Ops</h3>
+                <p>Building robust machine learning models and managing their lifecycle for optimal performance.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container news-section">
+        <h2>Latest News on AI</h2>
+        <div class="circular-news-hub">
+            <!-- Each div below acts as a segment of the conceptual "pie chart" -->
+            <div class="news-category-segment" data-category="generative-ai">
+                <span>Generative AI Breakthroughs</span>
+            </div>
+            <div class="news-category-segment" data-category="ai-healthcare">
+                <span>AI in Healthcare & Biotech</span>
+            </div>
+            <div class="news-category-segment" data-category="ethical-ai">
+                <span>Ethical AI & Regulations</span>
+            </div>
+            <div class="news-category-segment" data-category="ai-research">
+                <span>Latest AI Research & Papers</span>
+            </div>
+            <div class="news-category-segment" data-category="ai-business">
+                <span>AI in Business & Industry</span>
+            </div>
+            <!-- Add more categories as needed -->
+        </div>
+
+        <div class="news-display-area" id="newsDisplayArea">
+            <!-- This area will be populated by JavaScript when a category is clicked -->
+            <p style="text-align: center; color: var(--text-muted);">Select a category above to view the latest AI news.</p>
+        </div>
+    </div>
+
+    <script>
+        // --- News Data (Simulated for demonstration) ---
+        // In a real application, this data would be fetched from a backend API or a JSON file.
+        const newsData = {
+            "generative-ai": [
+                {
+                    headline: "New GPT Model Achieves Human-like Text Generation",
+                    summary: "Researchers unveil a groundbreaking generative pre-trained transformer model capable of highly coherent and contextually relevant text output, pushing the boundaries of AI creativity.",
+                    date: "July 1, 2025",
+                    link: "#"
+                },
+                {
+                    headline: "AI Creates Stunning Artworks in Seconds",
+                    summary: "A new AI art generator is making waves with its ability to produce intricate and unique visual art from simple text prompts, democratizing artistic creation.",
+                    date: "June 28, 2025",
+                    link: "#"
+                },
+                {
+                    headline: "AI-Powered Music Composition Tools Emerge",
+                    summary: "Innovative tools are now allowing even non-musicians to compose complex musical pieces with AI assistance, opening new avenues for creativity.",
+                    date: "June 25, 2025",
+                    link: "#"
+                }
+            ],
+            "ai-healthcare": [
+                {
+                    headline: "AI Diagnoses Rare Diseases with High Accuracy",
+                    summary: "An AI system trained on vast medical datasets demonstrates superior performance in identifying rare and complex medical conditions, accelerating diagnosis.",
+                    date: "July 3, 2025",
+                    link: "#"
+                },
+                {
+                    headline: "Robotics and AI Revolutionize Surgery",
+                    summary: "Next-gen surgical robots, guided by AI, are enhancing precision and reducing recovery times in complex operations, improving patient outcomes.",
+                    date: "June 30, 2025",
+                    link: "#"
+                },
+                {
+                    headline: "Personalized Medicine Driven by AI",
+                    summary: "AI algorithms are now tailoring drug treatments and therapies to individual patient genetics, improving efficacy and reducing side effects.",
+                    date: "June 26, 2025"
+                }
+            ],
+            "ethical-ai": [
+                {
+                    headline: "New EU Regulations Proposed for AI Ethics",
+                    summary: "The European Union is drafting comprehensive regulations to ensure fairness, transparency, and accountability in AI development and deployment across member states.",
+                    date: "July 2, 2025",
+                    link: "#"
+                },
+                {
+                    headline: "Addressing Bias in AI Algorithms",
+                    summary: "Researchers are developing new methods to detect and mitigate inherent biases in AI training data, promoting equitable outcomes and preventing discrimination.",
+                    date: "June 29, 2025",
+                    link: "#"
+                },
+                {
+                    headline: "The Debate: AI and Job Displacement",
+                    summary: "Economists and technologists discuss the long-term impact of AI automation on labor markets and strategies for workforce adaptation and retraining.",
+                    date: "June 24, 2025",
+                    link: "#"
+                }
+            ],
+            "ai-research": [
+                {
+                    headline: "Quantum Machine Learning Advances Reported",
+                    summary: "Significant breakthroughs in quantum computing are paving the way for more powerful and efficient machine learning algorithms.",
+                    date: "July 4, 2025",
+                    link: "#"
+                },
+                {
+                    headline: "New Algorithm Boosts AI Efficiency by 30%",
+                    summary: "A novel optimization algorithm dramatically reduces the computational resources required for training large AI models.",
+                    date: "July 1, 2025",
+                    link: "#"
+                },
+                {
+                    headline: "AI Discovers New Materials for Sustainable Energy",
+                    summary: "Using advanced AI, scientists have identified promising new compounds that could revolutionize renewable energy storage.",
+                    date: "June 27, 2025",
+                    link: "#"
+                }
+            ],
+            "ai-business": [
+                {
+                    headline: "AI Transforms Customer Service with Intelligent Chatbots",
+                    summary: "Businesses are increasingly adopting AI-powered chatbots that provide personalized and efficient customer support around the clock.",
+                    date: "July 5, 2025",
+                    link: "#"
+                },
+                {
+                    headline: "Supply Chain Optimization with AI",
+                    summary: "AI-driven solutions are helping companies predict demand, manage inventory, and optimize logistics for greater efficiency and resilience.",
+                    date: "July 2, 2025",
+                    link: "#"
+                },
+                {
+                    headline: "AI Enhances Cybersecurity Defenses",
+                    summary: "Machine learning algorithms are now crucial in detecting and responding to sophisticated cyber threats in real-time, protecting critical data.",
+                    date: "June 29, 2025",
+                    link: "#"
+                }
+            ]
+        };
+
+        // --- JavaScript for Interactivity ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const newsCategorySegments = document.querySelectorAll('.news-category-segment');
+            const newsDisplayArea = document.getElementById('newsDisplayArea');
+
+            // Function to render news articles for a given category
+            function renderNews(category) {
+                const articles = newsData[category];
+                if (!articles || articles.length === 0) {
+                    newsDisplayArea.innerHTML = `<p style="text-align: center; color: var(--text-muted);">No news available for this category yet.</p>`;
+                    return;
+                }
+
+                let articlesHtml = '';
+                articles.forEach(article => {
+                    articlesHtml += `
+                        <div class="news-article">
+                            <h3>${article.headline}</h3>
+                            <p class="date">${article.date}</p>
+                            <p>${article.summary}</p>
+                            <a href="${article.link}" target="_blank" rel="noopener noreferrer">Read More &rarr;</a>
+                        </div>
+                    `;
+                });
+                newsDisplayArea.innerHTML = articlesHtml;
+            }
+
+            // Add click event listeners to each news category segment
+            newsCategorySegments.forEach(segment => {
+                segment.addEventListener('click', () => {
+                    // Remove 'active' class from all segments
+                    newsCategorySegments.forEach(s => s.classList.remove('active'));
+                    // Add 'active' class to the clicked segment (for potential future styling)
+                    segment.classList.add('active');
+
+                    const category = segment.dataset.category; // Get the category from data-category attribute
+                    renderNews(category); // Render news for the selected category
+                });
+            });
+
+            // Optional: Load a default category on page load
+            // For example, load 'generative-ai' news initially
+            // if (newsData['generative-ai']) {
+            //     renderNews('generative-ai');
+            //     document.querySelector('.news-category-segment[data-category="generative-ai"]').classList.add('active');
+            // }
+        });
+    </script>
+</body>
+</html>
