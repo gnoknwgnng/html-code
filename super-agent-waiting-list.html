@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Agent - AI Agent Evaluation Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS 2.2.19 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* Light background for the overall page */
+            color: #333;
+        }
+        /* Custom styles to match the image more closely */
+        .btn-primary {
+            background-color: #007bff; /* A blue that matches the image */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .section-heading {
+            font-size: 2.5rem; /* Equivalent to text-4xl */
+            font-weight: 800; /* Equivalent to font-extrabold */
+            color: #1a202c; /* Dark text for headings */
+        }
+        .sub-heading {
+            font-size: 1.5rem; /* Equivalent to text-2xl */
+            font-weight: 600; /* Equivalent to font-semibold */
+            color: #4a5568; /* Slightly lighter text for subheadings */
+        }
+        .text-blue-main {
+            color: #007bff; /* Main blue color from the image */
+        }
+        .bg-pattern {
+            background-image: url('https://placehold.co/1600x900/f8f8f8/e0e0e0?text=Abstract+Pattern'); /* Placeholder for the abstract background */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.8;
+        }
+        .feature-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .info-card { /* New style for the "Why You Need This" section */
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            text-align: left;
+        }
+        .pricing-card { /* Renamed for general use, if needed for a CTA */
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            text-align: center;
+        }
+        .list-item-check { /* Style for checkmark lists */
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            color: #4a5568;
+        }
+        .list-item-check svg {
+            margin-right: 0.5rem;
+            color: #28a745; /* Green checkmark */
+        }
+
+        /* Styles copied from user's provided form code */
+        .cta-title-form { /* Renamed to avoid conflict with existing .cta-title */
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1a202c; /* Adjusted to match existing dark heading color */
+            margin-bottom: 0.7rem;
+        }
+        .cta-desc-form { /* Renamed to avoid conflict with existing .cta-desc */
+            color: #007bff; /* Adjusted to match existing blue color */
+            font-size: 1.08rem;
+            margin-bottom: 1.5rem;
+        }
+        .avatars {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #e0e7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #1a202c; /* Adjusted to match existing dark heading color */
+            font-size: 1.1rem;
+            border: 2px solid #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08); /* Adjusted shadow color */
+        }
+        .form-box {
+            width: 100%;
+            max-width: 370px;
+            margin: 0 auto 1.2rem auto;
+            background: #fff;
+            border-radius: 1.1rem;
+            box-shadow: 0 2px 18px 0 rgba(0,0,0,0.07); /* Adjusted shadow color */
+            padding: 2.2rem 2rem 1.5rem 2rem;
+            text-align: left;
+            box-sizing: border-box;
+        }
+        .form-box label {
+            color: #1a202c; /* Adjusted to match existing dark heading color */
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            display: block;
+            font-size: 1rem;
+        }
+        .form-box input {
+            width: 100%;
+            padding: 12px 13px;
+            margin-top: 7px;
+            margin-bottom: 18px;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            font-size: 1rem;
+            font-family: 'Inter', Arial, sans-serif;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+            background: #fff;
+        }
+        .form-box input:focus {
+            border-color: #007bff; /* Adjusted to match existing blue color */
+            outline: none;
+        }
+        .form-box button {
+            width: 100%;
+            background-color: #007bff; /* Adjusted to match existing blue color */
+            color: #fff;
+            border: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 13px 0;
+            border-radius: 0.5rem;
+            margin-top: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 2px 8px rgba(0,123,255,0.10); /* Adjusted shadow color */
+        }
+        .form-box button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .privacy-note {
+            font-size: 0.95rem;
+            color: #71717a;
+            margin-top: 1.2rem;
+        }
+        .privacy-note a {
+            color: #007bff; /* Adjusted to match existing blue color */
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
+            will-change: opacity, transform;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+        .cta-animated-btn {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.18s cubic-bezier(0.4,0,0.2,1);
+            z-index: 1;
+        }
+        .cta-animated-btn::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 100%;
+            background: #0056b3; /* Darker blue for hover effect */
+            z-index: -1;
+            transform: translateX(-100%);
+            transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+        }
+        .cta-animated-btn:hover {
+            transform: translateY(-2px);
+        }
+        .cta-animated-btn:hover::before {
+            transform: translateX(0);
+        }
+        /* Custom message box for alerts */
+        #messageBox {
+            display:none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            text-align: center;
+        }
+        #messageText {
+            font-size: 1.1rem;
+            color: #1a202c; /* Adjusted to match existing dark heading color */
+        }
+        #messageBoxClose {
+            background-color: #007bff; /* Adjusted to match existing blue color */
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        @media (min-width: 900px) {
+            .right-section .form-box {
+                position: sticky;
+                top: 40px;
+                z-index: 10;
+            }
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="w-full bg-white shadow-sm z-20 relative">
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-5 py-4">
+            <div class="flex items-center">
+                <!-- Super Agent Logo (text-based with circle) -->
+                <span class="text-2xl font-extrabold flex items-center">
+                    <span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
+                    <span class="text-gray-800">Super Agent</span>
+                </span>
+            </div>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#what-is" class="text-base font-medium text-gray-600 hover:text-gray-900">What is it?</a>
+                <a href="#secure-friendly" class="text-base font-medium text-gray-600 hover:text-gray-900">Secure & Friendly</a>
+                <a href="#why-need" class="text-base font-medium text-gray-600 hover:text-gray-900">Why you need this</a>
+                <a href="#" class="btn-primary px-4 py-2 text-sm">Contact Us</a>
+            </div>
+            <!-- Mobile Menu Button (if needed) -->
+            <div class="md:hidden">
+                <button class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (single, functional waitlist form) -->
+<section class="hero-section" style="padding: 80px 0 40px 0; text-align: center; background: #f8f9fa;">
+  <h1 class="fade-in" style="font-size:2.5rem; font-weight:800; color:#222; margin-bottom:18px; animation:fadeInUp 0.7s cubic-bezier(.4,0,.2,1);">Super Agent — Test, Analyze & Score Any <span style="color:#1976d2;">AI Agent</span></h1>
+  <p class="fade-in" style="max-width:600px; margin:0 auto 18px auto; color:#444; font-size:1.2rem; animation:fadeInUp 1s cubic-bezier(.4,0,.2,1); animation-delay:0.2s; animation-fill-mode:both;">Super Agent is an advanced AI evaluator that performs a complete screening test on any AI agent — including LLMs, chatbots, and custom APIs — and delivers detailed performance analytics in a statistical format.</p>
+  <div class="fade-in" style="margin: 32px 0 0 0; animation:fadeInUp 1.2s cubic-bezier(.4,0,.2,1); animation-delay:0.4s; animation-fill-mode:both;">
+    <span style="display:inline-block; background:#e0f7fa; color:#0097A7; font-weight:600; border-radius:16px; padding:6px 18px; font-size:1.08rem; margin-bottom:18px; letter-spacing:0.2px;">Join our waitlist for early access!</span>
+    <form id="waitlistEmailForm" action="https://script.google.com/macros/s/AKfycbxDZCX7Q2MCj0L85BOpF5XGzpAJG5QzWLfk8lvKDIy9bYZBE3rkwAQVArQqNGlXQPrR/exec" method="POST" style="display:inline-flex; gap:12px; justify-content:center;">
+      <input type="email" name="email" placeholder="Enter your email" required style="padding:12px 18px; border-radius:8px; border:1px solid #ccc; font-size:1rem; min-width:220px;">
+      <button type="submit" style="background:#1976d2; color:#fff; font-weight:600; border:none; border-radius:8px; padding:12px 28px; font-size:1rem; cursor:pointer;">Request access</button>
+    </form>
+    <div id="waitlistEmailMsg" style="text-align:center; margin-top:12px; font-size:1rem;"></div>
+  </div>
+</section>
+<style>
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(32px); }
+  to { opacity:1; transform:none; }
+}
+.fade-in { opacity:0; animation-fill-mode:forwards; }
+.fade-in { animation-play-state:running; }
+.hero-section .fade-in { animation-play-state:running; }
+</style>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    el.style.opacity = 1;
+  });
+});
+const form = document.getElementById('waitlistEmailForm');
+const msg = document.getElementById('waitlistEmailMsg');
+const btn = form.querySelector('button[type="submit"]');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  btn.disabled = true;
+  btn.textContent = "Submitting...";
+  msg.textContent = "";
+  msg.style.opacity = 0;
+  fetch(form.action, { method: 'POST', body: new FormData(form) })
+    .then(r => {
+      if (r.ok) {
+        msg.innerHTML = '<span style="color:#22c55e;font-size:1.2em;">&#10003;</span> <span style="color:#009688;">Submitted! You are on the waitlist.</span>';
+        form.reset();
+      } else {
+        msg.innerHTML = '<span style="color:#ef4444;font-size:1.2em;">&#10007;</span> <span style="color:#D32F2F;">There was an error. Please try again.</span>';
+      }
+      msg.style.opacity = 1;
+      btn.disabled = false;
+      btn.textContent = "Request access";
+      setTimeout(() => { msg.style.opacity = 0; }, 4000);
+    })
+    .catch(() => {
+      msg.innerHTML = '<span style="color:#ef4444;font-size:1.2em;">&#10007;</span> <span style="color:#D32F2F;">Network error. Please try again.</span>';
+      msg.style.opacity = 1;
+      btn.disabled = false;
+      btn.textContent = "Request access";
+      setTimeout(() => { msg.style.opacity = 0; }, 4000);
+    });
+});
+</script>
+<!-- END HERO SECTION -->
+
+    <!-- What Is Super Agent Section -->
+    <section id="what-is" class="relative z-10 py-16 md:py-20 bg-white fade-in-section">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left Content -->
+            <div>
+                <h3 class="section-heading text-left mb-6">
+                    🎯 What Is Super Agent?
+                </h3>
+                <p class="text-gray-600 mb-8">
+                    Super Agent is an advanced AI evaluator that performs a complete screening test on any AI agent — including LLMs, chatbots, and custom APIs — and delivers detailed performance analytics in a statistical format.
+                </p>
+                <ul class="space-y-4">
+                    <li class="list-item-check">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Complete screening test on any AI agent
+                    </li>
+                    <li class="list-item-check">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Evaluates LLMs, chatbots, and custom APIs
+                    </li>
+                    <li class="list-item-check">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Delivers detailed performance analytics in statistical format
+                    </li>
+                </ul>
+            </div>
+            <!-- Right Images -->
+            <div class="flex flex-col space-y-6">
+                <div class="rounded-lg shadow-lg"></div>
+                <div class="rounded-lg shadow-lg"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secure & Developer-Friendly Section -->
+    <section id="secure-friendly" class="relative z-10 py-16 md:py-20 bg-gray-50 fade-in-section">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left Image -->
+            <div class="flex justify-center md:order-last">
+                <div class="rounded-lg shadow-lg"></div>
+            </div>
+            <!-- Right Content -->
+            <div class="md:order-first">
+                <h3 class="section-heading text-left mb-8">
+                    ✔️ Secure & Developer-Friendly
+                </h3>
+                <ul class="space-y-4">
+                    <li class="list-item-check">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        No data leaks – API endpoints and logs are not stored
+                    </li>
+                    <li class="list-item-check">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Clean UI with detailed insights
+                    </li>
+                    <li class="list-item-check">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        PDF export and visual report support
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why You Need This Section -->
+    <section id="why-need" class="relative z-10 py-16 md:py-20 bg-white fade-in-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <h3 class="section-heading text-center mb-12">🎯 Why You Need This</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Reason Card 1 -->
+                <div class="info-card">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Validate Third-Party Agents</h4>
+                    <p class="text-gray-600 text-sm">
+                        Ensure external AI agents meet your performance and security standards before integration.
+                    </p>
+                </div>
+                <!-- Reason Card 2 -->
+                <div class="info-card">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Run Regression Tests</h4>
+                    <p class="text-gray-600 text-sm">
+                        Automatically test your AI models after every update to catch regressions early.
+                    </p>
+                </div>
+                <!-- Reason Card 3 -->
+                <div class="info-card">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Automated Benchmarking</h4>
+                    <p class="text-gray-600 text-sm">
+                        Use Super Agent as an automated tool to benchmark your AI models against industry standards.
+                    </p>
+                </div>
+                <!-- Reason Card 4 -->
+                <div class="info-card">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Compare AI Models</h4>
+                    <p class="text-gray-600 text-sm">
+                        Get real metrics to compare different AI models side-by-side and make informed decisions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call to Action Section (now with detailed form) -->
+    <section id="final-cta" class="relative z-10 py-16 md:py-20 bg-gray-100 text-center fade-in-section">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="cta-title-form">Join our journey and<br>get early access</div>
+            <div class="cta-desc-form">Join our extensive waitlist today to spark connection and get notified when we launch 🎉</div>
+            <div class="avatars">
+                <div class="avatar"><span>👩‍🦱</span></div>
+                <div class="avatar"><span>🧑🏾</span></div>
+                <div class="avatar"><span>🧔🏻</span></div>
+                <div class="avatar"><span>R</span></div>
+                <div class="avatar"><span>🦸‍♂️</span></div>
+                <div class="avatar"><span>🧑‍🎤</span></div>
+            </div>
+            <div class="form-box">
+                <form id="superAgentForm" action="https://script.google.com/macros/s/AKfycbzfXbRhHRe9P3Y2ZrFlWSZUpboFj4g6jcRFJytLmVOfBotAQEJMJVdBo_ImBgtOBbM1/exec" method="POST">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <label for="phone">Mobile Number</label>
+                    <input type="text" id="phone" name="phone" placeholder="Mobile Number" required>
+                    <label for="company">Organization / Company Name</label>
+                    <input type="text" id="company" name="company" placeholder="Organization / Company Name">
+                    <button type="submit" class="cta-animated-btn">Continue →</button>
+                </form>
+            </div>
+            <!-- Custom message box for alerts -->
+            <div id="messageBox" style="display:none;">
+                <p id="messageText"></p>
+                <button id="messageBoxClose">Close</button>
+            </div>
+            <p class="privacy-note">
+                By clicking "Continue", you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full py-7 bg-gray-900 text-white mt-2">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center mb-4 md:mb-0">
+                <span class="text-2xl font-extrabold flex items-center">
+                    <span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
+                    <span class="text-white">Super Agent</span>
+                </span>
+            </div>
+            <div class="flex space-x-6 text-sm mb-4 md:mb-0">
+                <a href="#what-is" class="hover:text-gray-300">What is it?</a>
+                <a href="#secure-friendly" class="hover:text-gray-300">Secure & Friendly</a>
+                <a href="#why-need" class="hover:text-gray-300">Why you need this</a>
+            </div>
+            <div class="text-xs text-gray-400">
+                © 2024 Super Agent. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to show custom message box
+        function showMessageBox(message, type) {
+            const messageBox = document.getElementById('messageBox');
+            const messageText = document.getElementById('messageText');
+            messageText.textContent = message;
+            messageText.style.color = type === 'success' ? '#007bff' : '#D32F2F'; // Blue for success, red for error
+            messageBox.style.display = 'block';
+        }
+
+        // Function to hide custom message box
+        document.getElementById('messageBoxClose').addEventListener('click', function() {
+            document.getElementById('messageBox').style.display = 'none';
+        });
+
+        // Event listener for form submission
+        document.getElementById("superAgentForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent default form submission
+            const form = e.target;
+            const data = new FormData(form);
+
+            // Fetch API to submit form data
+            fetch(form.action, {
+                method: "POST",
+                body: data,
+            })
+            .then(response => {
+                // Check if the response is successful (status code 2xx)
+                if (response.ok) {
+                    showMessageBox("✅ Submitted successfully! You're now on the Super Agent waiting list.", 'success');
+                    form.reset(); // Reset form fields on success
+                } else {
+                    // Handle HTTP errors
+                    showMessageBox("❌ There was an error. Please try again.", 'error');
+                }
+            })
+            .catch(error => {
+                // Handle network errors
+                console.error("Error during form submission:", error);
+                showMessageBox("❌ There was a network error. Please check your connection and try again.", 'error');
+            });
+        });
+
+        // Intersection Observer for fade-in animation
+        (function() {
+            const faders = document.querySelectorAll('.fade-in-section');
+            if (!('IntersectionObserver' in window) || faders.length === 0) return;
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.18 });
+            faders.forEach(el => observer.observe(el));
+        })();
+    </script>
+</body>
+</html>
