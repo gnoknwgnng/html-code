@@ -5,7 +5,7 @@
     <title>Zylense.ai - AI-Driven Business Transformation Solutions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Tailwind CSS 2.2.19 -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome 6.5.2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
     <!-- Google Fonts: Inter -->
@@ -145,7 +145,8 @@
                 </span>
                 <span class="text-2xl md:text-2xl font-extrabold align-middle" style="color:#0B0B5D; letter-spacing:0.2px;">Zylense.ai</span>
             </div>
-            <div class="hidden md:flex space-x-10 items-center">
+            <!-- Desktop Navigation Links -->
+            <div class="hidden xl:flex space-x-10 items-center">
                 <a href="#about" class="text-base font-semibold nav-link" style="color:#0097A7;">About Us</a>
                 <a href="services.html" class="text-base font-semibold nav-link" style="color:#0097A7;">Services</a>
                 <a href="tools.html" class="text-base font-semibold nav-link" style="color:#0097A7;">Tools</a>
@@ -153,6 +154,21 @@
                 <a href="careers.html" class="text-base font-semibold nav-link" style="color:#0097A7;">Careers</a>
                 <a href="#contact" class="text-base font-semibold nav-link" style="color:#0097A7;">Contact</a>
             </div>
+            <!-- Mobile Menu Button (Hamburger) - Visible on smaller screens up to xl breakpoint -->
+            <div class="xl:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu Dropdown - Hidden by default, hidden on xl breakpoint and up -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-white shadow-lg py-2">
+            <a href="#about" class="block px-5 py-2 text-base font-semibold text-gray-700 hover:bg-gray-100" style="color:#0097A7;">About Us</a>
+            <a href="services.html" class="block px-5 py-2 text-base font-semibold text-gray-700 hover:bg-gray-100" style="color:#0097A7;">Services</a>
+            <a href="tools.html" class="block px-5 py-2 text-base font-semibold text-gray-700 hover:bg-gray-100" style="color:#0097A7;">Tools</a>
+            <a href="training.html" class="block px-5 py-2 text-base font-semibold text-gray-700 hover:bg-gray-100" style="color:#0097A7;">Training</a>
+            <a href="careers.html" class="block px-5 py-2 text-base font-semibold text-gray-700 hover:bg-gray-100" style="color:#0097A7;">Careers</a>
+            <a href="#contact" class="block px-5 py-2 text-base font-semibold text-gray-700 hover:bg-gray-100" style="color:#0097A7;">Contact</a>
         </div>
     </nav>
 
@@ -243,17 +259,15 @@
                     <img src="Srujana.pic (1).jpg" alt="Srujana Raghupatruni, Founder Zylense" class="rounded-full w-40 h-40 border-4 border-blue-900 object-cover shadow-lg mb-5 bg-white" style="object-position:top;">
                     <div class="text-center">
                         <h5 class="text-xl font-bold mb-1" style="color:#0B0B5D;">Srujana Raghupatruni
- <!-- LinkedIn Icon and Link -->
-                    <a href="https://www.linkedin.com/in/srujana-raghupatruni/" target="_blank" class="text-blue-700 text-2xl text-left">
-                        <i class="fab fa-linkedin"></i> 
-                    </a>
-
-</h5>
+                            <!-- LinkedIn Icon and Link -->
+                            <a href="https://www.linkedin.com/in/srujana-raghupatruni/" target="_blank" class="text-blue-700 text-2xl text-left">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </h5>
                         <span class="text-sm mb-2" style="color:#0097A7;">Founder & Principal Consultant</span>
                         <p class="text-base mt-3 text-justify" style="color:#0097A7;">
                             An IIT Delhi alumna and visionary strategist, Srujana Raghupatruni stands at the intersection of emerging technology and business transformation. As the founder of Zylense, she leads with a bold vision—to turn AI and deep-tech into engines of meaningful impact. With deep expertise in product strategy, intelligent automation, and tech-driven growth, Srujana helps organizations reimagine what's possible and build for the future.
                         </p>
-
                     </div>
                 </div>
             </div>
@@ -267,37 +281,37 @@
             <p class="text-base mb-6 text-center" style="color:#0097A7;">
                 Ready to start your AI transformation journey?
             </p>
-            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field"     action="/thankyou.html">
-  <!-- Netlify bot-field (spam protection) -->
-  <input type="hidden" name="form-name" value="contact" />
-  <p class="hidden">
-    <label>Don't fill this out: <input name="bot-field" /></label>
-  </p>
+            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thankyou.html">
+                <!-- Netlify bot-field (spam protection) -->
+                <input type="hidden" name="form-name" value="contact" />
+                <p class="hidden">
+                    <label>Don't fill this out: <input name="bot-field" /></label>
+                </p>
 
-  <!-- Your existing form fields -->
-  <div class="grid md:grid-cols-2 gap-6 mb-5">
-    <div>
-      <label class="block mb-2 text-sm font-semibold" style="color:#0B0B5D;">Full Name</label>
-      <input name="name" required type="text" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Your Name">
-    </div>
-    <div>
-      <label class="block mb-2 text-sm font-semibold" style="color:#0B0B5D;">Email Address</label>
-      <input name="email" required type="email" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Email">
-    </div>
-  </div>
-  <div class="mb-5">
-    <label class="block mb-2 text-sm font-semibold" style="color:#0B0B5D;">Company Name</label>
-    <input name="company" type="text" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Company">
-  </div>
-  <div class="mb-6">
-    <label class="block mb-2 text-sm font-semibold" style="color:#0B0B5D;">Your Message</label>
-    <textarea name="message" required class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" rows="3" placeholder="Message"></textarea>
-  </div>
+                <!-- Your existing form fields -->
+                <div class="grid md:grid-cols-2 gap-6 mb-5">
+                    <div>
+                        <label class="block mb-2 text-sm font-semibold" style="color:#0B0B5D;">Full Name</label>
+                        <input name="name" required type="text" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Your Name">
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-sm font-semibold" style="color:#0B0B5D;">Email Address</label>
+                        <input name="email" required type="email" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Email">
+                    </div>
+                </div>
+                <div class="mb-5">
+                    <label class="block mb-2 text-sm font-semibold" style="color:#0B0B5D;">Company Name</label>
+                    <input name="company" type="text" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Company">
+                </div>
+                <div class="mb-6">
+                    <label class="block mb-2 text-sm font-semibold" style="color:#0B0B5D;">Your Message</label>
+                    <textarea name="message" required class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" rows="3" placeholder="Message"></textarea>
+                </div>
 
-  <!-- Submit -->
-  <button type="submit" class="contact-btn px-8 py-3 shadow font-semibold block mx-auto uppercase text-lg" style="background:#0097A7; color:#fff;">
-    Send Message
-  </button>
+                <!-- Submit -->
+                <button type="submit" class="contact-btn px-8 py-3 shadow font-semibold block mx-auto uppercase text-lg" style="background:#0097A7; color:#fff;">
+                    Send Message
+                </button>
                 <div class="mt-7 text-center" style="color:#0097A7;">
                     <i class="fas fa-envelope"></i> info@zylense.ai &nbsp;|&nbsp; <i class="fas fa-phone-alt"></i> +91-9121552086
                 </div>
@@ -307,25 +321,25 @@
 
     <!-- Our Upcoming Tools Section -->
     <section id="upcoming-tools" class="relative z-10 py-16 bg-gradient-to-br from-cyan-50 via-white to-blue-100">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-10" style="color:#0B0B5D; letter-spacing:0.5px;">🚀 Our Upcoming Tools</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <!-- Super Agent Card -->
-          <div class="rounded-2xl shadow-xl bg-white border-t-4 border-cyan-500 p-8 flex flex-col items-center hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-            <div class="text-5xl mb-4">🤖</div>
-            <h3 class="text-2xl font-bold mb-2" style="color:#0B0B5D;">Super Agent</h3>
-            <p class="text-gray-700 mb-5 text-center">Test, analyze, and score any AI agent with advanced analytics. Perfect for LLMs, chatbots, and custom APIs.</p>
-            <a href="super-agent-waiting-list.html" class="inline-block px-6 py-3 font-semibold rounded-lg shadow transition text-lg" style="background:#0097A7; color:#fff; letter-spacing:0.5px; border:none;" onmouseover="this.style.background='#0B0B5D'" onmouseout="this.style.background='#0097A7'">Join Super Agent Waitlist</a>
-          </div>
-          <!-- MSME Tool Card -->
-          <div class="rounded-2xl shadow-xl bg-white border-t-4 border-amber-500 p-8 flex flex-col items-center hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-            <div class="text-5xl mb-4">🛠️</div>
-            <h3 class="text-2xl font-bold mb-2" style="color:#0B0B5D;">MSME Tool</h3>
-            <p class="text-gray-700 mb-5 text-center">Empowering micro, small, and medium enterprises with digital tools for growth, efficiency, and innovation.</p>
-            <a href="msme-details.html" class="inline-block px-6 py-3 font-semibold rounded-lg shadow transition text-lg" style="background:#0097A7; color:#fff; letter-spacing:0.5px; border:none;" onmouseover="this.style.background='#0B0B5D'" onmouseout="this.style.background='#0097A7'">Join MSME Waitlist</a>
-          </div>
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-10" style="color:#0B0B5D; letter-spacing:0.5px;">🚀 Our Upcoming Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Super Agent Card -->
+                <div class="rounded-2xl shadow-xl bg-white border-t-4 border-cyan-500 p-8 flex flex-col items-center hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-5xl mb-4">🤖</div>
+                    <h3 class="text-2xl font-bold mb-2" style="color:#0B0B5D;">Super Agent</h3>
+                    <p class="text-gray-700 mb-5 text-center">Test, analyze, and score any AI agent with advanced analytics. Perfect for LLMs, chatbots, and custom APIs.</p>
+                    <a href="super-agent-waiting-list.html" class="inline-block px-6 py-3 font-semibold rounded-lg shadow transition text-lg" style="background:#0097A7; color:#fff; letter-spacing:0.5px; border:none;" onmouseover="this.style.background='#0B0B5D'" onmouseout="this.style.background='#0097A7'">Join Super Agent Waitlist</a>
+                </div>
+                <!-- MSME Tool Card -->
+                <div class="rounded-2xl shadow-xl bg-white border-t-4 border-amber-500 p-8 flex flex-col items-center hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-5xl mb-4">🛠️</div>
+                    <h3 class="text-2xl font-bold mb-2" style="color:#0B0B5D;">MSME Tool</h3>
+                    <p class="text-gray-700 mb-5 text-center">Empowering micro, small, and medium enterprises with digital tools for growth, efficiency, and innovation.</p>
+                    <a href="msme-details.html" class="inline-block px-6 py-3 font-semibold rounded-lg shadow transition text-lg" style="background:#0097A7; color:#fff; letter-spacing:0.5px; border:none;" onmouseover="this.style.background='#0B0B5D'" onmouseout="this.style.background='#0097A7'">Join MSME Waitlist</a>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Footer -->
@@ -450,6 +464,23 @@
             
             initParticles();
             animate();
+        }
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
         }
     </script>
 </body>
