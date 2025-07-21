@@ -242,34 +242,65 @@
                 z-index: 10;
             }
         }
+        /* Navigation Bar Styles */
+        .navbar {
+            width: 100%;
+            background: #fff;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            font-family: 'Inter', Arial, sans-serif;
+        }
+
+        .navbar-menu {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            margin: 0;
+            padding: 0 32px;
+            height: 70px;
+            align-items: center;
+        }
+
+        .navbar-menu li a {
+            color: #0B0B5D;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: color 0.2s;
+        }
+
+        .navbar-menu li a:hover {
+            color: #0097A7;
+        }
+
+        @media (max-width: 900px) {
+            .navbar-menu {
+                flex-direction: column;
+                gap: 10px;
+                height: auto;
+                align-items: flex-start;
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body class="relative overflow-x-hidden">
 
-    <!-- Navbar -->
-    <nav class="w-full bg-white shadow-sm z-20 relative">
-        <div class="max-w-7xl mx-auto flex items-center justify-between px-5 py-4">
-            <div class="flex items-center">
-                <!-- Super Agent Logo (text-based with circle) -->
-                <span class="text-2xl font-extrabold flex items-center">
-                    <span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
-                    <span class="text-gray-800">Super Agent</span>
-                </span>
-            </div>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#what-is" class="text-base font-medium text-gray-600 hover:text-gray-900">What is it?</a>
-                <a href="#secure-friendly" class="text-base font-medium text-gray-600 hover:text-gray-900">Secure & Friendly</a>
-                <a href="#why-need" class="text-base font-medium text-gray-600 hover:text-gray-900">Why you need this</a>
-                <a href="#" class="btn-primary px-4 py-2 text-sm">Contact Us</a>
-            </div>
-            <!-- Mobile Menu Button (if needed) -->
-            <div class="md:hidden">
-                <button class="text-gray-600 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-        </div>
+    <!-- Navigation Bar Start -->
+    <nav class="navbar">
+        <ul class="navbar-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
+    <!-- Navigation Bar End -->
 
     <!-- HERO SECTION (single, functional waitlist form) -->
 <section class="hero-section" style="padding: 80px 0 40px 0; text-align: center; background: #f8f9fa;">
@@ -519,8 +550,7 @@ form.addEventListener('submit', function(e) {
             .then(response => {
                 // Check if the response is successful (status code 2xx)
                 if (response.ok) {
-                    showMessageBox("✅ Submitted successfully! You're now on the Super Agent waiting list.", 'success');
-                    form.reset(); // Reset form fields on success
+                    window.location.href = "thankyou.html";
                 } else {
                     // Handle HTTP errors
                     showMessageBox("❌ There was an error. Please try again.", 'error');
