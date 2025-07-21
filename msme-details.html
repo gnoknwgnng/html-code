@@ -254,9 +254,65 @@
         max-width: 90%; /* Max width for form on mobile */
       }
     }
+
+    /* Navigation Bar Styles */
+    .navbar {
+      width: 100%;
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+      margin: 0;
+      padding: 0 32px;
+      height: 70px;
+      align-items: center;
+    }
+
+    .navbar-menu li a {
+      color: #0B0B5D;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: color 0.2s;
+    }
+
+    .navbar-menu li a:hover {
+      color: #0097A7;
+    }
+
+    @media (max-width: 900px) {
+      .navbar-menu {
+        flex-direction: column;
+        gap: 10px;
+        height: auto;
+        align-items: flex-start;
+        padding: 10px;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Navigation Bar Start -->
+<nav class="navbar">
+  <ul class="navbar-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html">About Us</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="training.html">Training</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+<!-- Navigation Bar End -->
   <div class="split-container">
     <div class="left-section">
       <div class="headline">Unlock the Future of MSME Automation! 🚀</div>
@@ -336,9 +392,7 @@
           })
           .then(() => {
             // Show a success message if the submission is successful
-            showMessage("✅ Submitted successfully! You're now on the waiting list.");
-            // Reset the form fields
-            form.reset();
+            window.location.href = "thankyou.html";
           })
           .catch((error) => {
             // Log the error for debugging purposes
